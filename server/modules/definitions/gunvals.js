@@ -10,12 +10,12 @@ module.exports = {
     closer: { reload: 1.25, recoil: 0.25, health: 1000, damage: 1000, pen: 1000, speed: 2.5, maxSpeed: 2.25, range: 1.4, density: 4, spray: 0.25 },
 
     // Bases
-    basic: { reload: 18, recoil: 1.4, shudder: 0.1, damage: 0.75, speed: 4.5, spray: 15 },
-    drone: { reload: 50, recoil: 0.25, shudder: 0.1, size: 0.6, speed: 2, spray: 0.1 },
-    trap: { reload: 36, shudder: 0.25, size: 0.6, damage: 0.75, speed: 5, spray: 15, resist: 3 },
-    swarm: { reload: 18, recoil: 0.25, shudder: 0.05, size: 0.4, damage: 0.75, speed: 4, spray: 5 },
-    factory: { reload: 60, shudder: 0.1, size: 0.7, damage: 0.75, speed: 3, spray: 0.1 },
-    productionist: { reload: 75, recoil: 0.25, shudder: 0.05, size: 0.7, damage: 0.75, speed: 4, range: 1.5, spray: 5 },
+    basic: { reload: 12, recoil: 1.4, shudder: 0.1, damage: 0.75, speed: 5.5, spray: 15 },
+    drone: { reload: 35, recoil: 0.25, shudder: 0.1, size: 0.6, speed: 2, spray: 0.1 },
+    trap: { reload: 24, shudder: 0.25, size: 0.6, damage: 0.75, speed: 5, spray: 15, resist: 3 },
+    swarm: { reload: 12, recoil: 0.25, shudder: 0.05, size: 0.4, damage: 0.75, speed: 4, spray: 5 },
+    factory: { reload: 35, shudder: 0.1, size: 0.7, damage: 0.75, speed: 3, spray: 0.1 },
+    productionist: { reload: 45, recoil: 0.25, shudder: 0.05, size: 0.7, damage: 0.75, speed: 4, range: 1.5, spray: 5 },
 
     // Spammers
     single: { reload: 1.05, speed: 1.05 },

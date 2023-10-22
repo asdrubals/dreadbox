@@ -5,8 +5,8 @@ module.exports = {
     MAZE: 30,
     X_GRID: 15,
     Y_GRID: 15,
-    WIDTH: 5000,
-    HEIGHT: 5000,
+    WIDTH: 10000,
+    HEIGHT: 10000,
     CLEAR_NEST: true,
     ROOM_SETUP: room,
 };

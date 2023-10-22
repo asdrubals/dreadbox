@@ -6,6 +6,7 @@
 const { combineStats, makeAuto } = require('../facilitators.js');
 const { gunCalcNames, smshskl } = require('../constants.js');
 const g = require('../gunvals.js');
+const newbasic = { reload: 12, recoil: 1.4, shudder: 0.1, damage: 0.5, speed: 5, spray: 15, range: 0.38 }
 const ensureIsClass = (Class, str) => {
     if ("object" == typeof str) {
         return str;
@@ -16,15 +17,15 @@ const ensureIsClass = (Class, str) => {
     throw Error(`Definition ${str} is attempted to be gotten but does not exist!`);
 };
 const dreadnoughtBody = {
-    ACCEL: 1.6,
-    SPEED: 1.4,
+    ACCEL: 1.3,
+    SPEED: 1,
     HEALTH: 400,
-    DAMAGE: 10,
+    DAMAGE: 5,
     RESIST: 3,
     PENETRATION: 2,
-    SHIELD: 40,
+    SHIELD: 20,
     REGEN: 0.025,
-    FOV: 1.5,
+    FOV: 1.3,
     DENSITY: 3,
 };
 
@@ -54,7 +55,7 @@ module.exports = ({ Class }) => {
 	    GUNS: [{
 	        POSITION: [22, 10, 1, 0, 0, 0, 0],
 	        PROPERTIES: {
-	            SHOOT_SETTINGS: combineStats([g.basic, g.gunner, g.power, g.morerecoil, g.turret, g.pound, g.morespeed, g.morereload, g.doublereload]),
+	            SHOOT_SETTINGS: combineStats([newbasic, g.gunner, g.power, g.morerecoil, g.turret, g.pound, g.morespeed, g.morereload, g.doublereload]),
 	            TYPE: "bullet"
 	        }
 	    }]
@@ -71,7 +72,7 @@ module.exports = ({ Class }) => {
 	    GUNS: [{
 	        POSITION: [22, 10, 1, 0, 0, 0, 0],
 	        PROPERTIES: {
-	            SHOOT_SETTINGS: combineStats([g.basic, g.gunner, g.power, g.morerecoil, g.turret, g.morereload]),
+	            SHOOT_SETTINGS: combineStats([newbasic, g.gunner, g.power, g.morerecoil, g.turret, g.morereload]),
 	            TYPE: "bullet"
 	        }
 	    }]
@@ -88,7 +89,7 @@ module.exports = ({ Class }) => {
 	    GUNS: [{
 	        POSITION: [22, 10, 1, 0, 0, 0, 0],
 	        PROPERTIES: {
-	            SHOOT_SETTINGS: combineStats([g.basic, g.gunner, g.power, g.morerecoil, g.turret, g.morereload]),
+	            SHOOT_SETTINGS: combineStats([newbasic, g.gunner, g.power, g.morerecoil, g.turret, g.morereload]),
 	            TYPE: "bullet"
 	        }
 	    }]
@@ -113,7 +114,7 @@ module.exports = ({ Class }) => {
 	    Class.sword_APSofficialdreadv1.GUNS.push({
 	        POSITION: [18, 7, 1, 0, 0, 120*i, 0],
 	        PROPERTIES: {
-	            SHOOT_SETTINGS: combineStats([g.basic, g.pound, g.sniper, g.morereload]),
+	            SHOOT_SETTINGS: combineStats([newbasic, g.pound, g.sniper, g.morereload]),
 	            TYPE: "bullet"
 	        }
 	    });
@@ -128,7 +129,7 @@ module.exports = ({ Class }) => {
 	    Class.pacifier_APSofficialdreadv1.GUNS.push({
 	        POSITION: [15, 7, 1, 0, 0, 120*i, 0],
 	        PROPERTIES: {
-	            SHOOT_SETTINGS: combineStats([g.basic, g.pound, g.morereload]),
+	            SHOOT_SETTINGS: combineStats([newbasic, g.pound, g.morereload]),
 	            TYPE: "bullet"
 	        }
 	    });
@@ -213,7 +214,7 @@ module.exports = ({ Class }) => {
 	    Class.sabre_APSofficialdreadv1.GUNS.push({
 	        POSITION: [25, 7, 1, 0, 0, 120*i, 0],
 	        PROPERTIES: {
-	            SHOOT_SETTINGS: combineStats([g.basic, g.pound, g.sniper, g.assass, g.morespeed, g.morereload]),
+	            SHOOT_SETTINGS: combineStats([newbasic, g.pound, g.sniper, g.assass, g.morespeed, g.morereload]),
 	            TYPE: "bullet"
 	        }
 	    }, {
@@ -231,7 +232,7 @@ module.exports = ({ Class }) => {
 	    }, {
 	        POSITION: [20, 6, 1, 0, 0, 120*i, 0],
 	        PROPERTIES: {
-	            SHOOT_SETTINGS: combineStats([g.basic, g.pound, g.sniper, g.rifle, g.morespeed, g.morereload]),
+	            SHOOT_SETTINGS: combineStats([newbasic, g.pound, g.sniper, g.rifle, g.morespeed, g.morereload]),
 	            TYPE: "bullet"
 	        }
 	    });
@@ -246,13 +247,13 @@ module.exports = ({ Class }) => {
 	    Class.appeaser_APSofficialdreadv1.GUNS.push({
 	        POSITION: [6, 8, 1.3, 7, 0, 120*i, 0],
 	        PROPERTIES: {
-	            SHOOT_SETTINGS: combineStats([g.basic, g.mach, g.pound, g.morereload, g.slow, {size: 0.55}]),
+	            SHOOT_SETTINGS: combineStats([newbasic, g.mach, g.pound, g.morereload, g.slow, {size: 0.55}]),
 	            TYPE: "bullet"
 	        }
 	    }, {
 	        POSITION: [6, 7.5, 1.2, 9, 0, 120*i, 0],
 	        PROPERTIES: {
-	            SHOOT_SETTINGS: combineStats([g.basic, g.mach, g.pound, g.morereload, g.slow, {size: 0.55 * 8 / 7.5}]),
+	            SHOOT_SETTINGS: combineStats([newbasic, g.mach, g.pound, g.morereload, g.slow, {size: 0.55 * 8 / 7.5}]),
 	            TYPE: "bullet"
 	        }
 	    });
@@ -266,7 +267,7 @@ module.exports = ({ Class }) => {
 	    Class.peacekeeper_APSofficialdreadv1.GUNS.push({
 	        POSITION: [17, 10, 1, 0, 0, 120*i, 0],
 	        PROPERTIES: {
-	            SHOOT_SETTINGS: combineStats([g.basic, g.pound, g.destroy, g.destroy, g.morereload]),
+	            SHOOT_SETTINGS: combineStats([newbasic, g.pound, g.destroy, g.destroy, g.morereload]),
 	            TYPE: "bullet",
 	        }
 	    });
@@ -280,19 +281,19 @@ module.exports = ({ Class }) => {
 	    Class.diplomat_APSofficialdreadv1.GUNS.push({
 	        POSITION: [13.5, 6, 1, 0, 2.2, 120*i, 0.5],
 	        PROPERTIES: {
-	            SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.triple, g.slow, g.pound, g.morereload]),
+	            SHOOT_SETTINGS: combineStats([newbasic, g.twin, g.triple, g.slow, g.pound, g.morereload]),
 	            TYPE: "bullet"
 	        }
 	    }, {
 	        POSITION: [13.5, 6, 1, 0, -2.2, 120*i, 0.5],
 	        PROPERTIES: {
-	            SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.triple, g.slow, g.pound, g.morereload]),
+	            SHOOT_SETTINGS: combineStats([newbasic, g.twin, g.triple, g.slow, g.pound, g.morereload]),
 	            TYPE: "bullet"
 	        }
 	    }, {
 	        POSITION: [15.5, 6, 1, 0, 0, 120*i, 0],
 	        PROPERTIES: {
-	            SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.triple, g.slow, g.pound, g.morereload]),
+	            SHOOT_SETTINGS: combineStats([newbasic, g.twin, g.triple, g.slow, g.pound, g.morereload]),
 	            TYPE: "bullet"
 	        }
 	    });
@@ -470,7 +471,7 @@ module.exports = ({ Class }) => {
 	    }],
 	}
 
-	Class.specialTanks.UPGRADES_TIER_0.push("dread_APSofficialdreadv1");
+	Class.developer.UPGRADES_TIER_0.push("dread_APSofficialdreadv1");
 		Class.dread_APSofficialdreadv1.UPGRADES_TIER_1 = ["sword_APSofficialdreadv1", "pacifier_APSofficialdreadv1", "invader_APSofficialdreadv1", "centaur_APSofficialdreadv1"];
 			Class.sword_APSofficialdreadv1.UPGRADES_TIER_M1 = ["sabre_APSofficialdreadv1", "gladius_APSofficialdreadv1"];
 			Class.pacifier_APSofficialdreadv1.UPGRADES_TIER_M1 = ["appeaser_APSofficialdreadv1", "peacekeeper_APSofficialdreadv1", "diplomat_APSofficialdreadv1"];

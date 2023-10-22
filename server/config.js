@@ -10,7 +10,7 @@ module.exports = {
 
     // Ticks per second. 1 is 30 tps, 2 is 60, etc.
     // Has physics side effecs.
-    gameSpeed: 1,
+    gameSpeed: 2,
 
     // How often to update the list of the entities players can see.
     // Has effects of when entities are activated.
@@ -27,10 +27,10 @@ module.exports = {
     // Room
     
     // Room width in grid units
-    WIDTH: 6500,
+    WIDTH: 3500,
     
     // Room height in grid units
-    HEIGHT: 6500,
+    HEIGHT: 3500,
     
     // Shape of the arena.
     // Can be "rect" or "circle".
@@ -69,7 +69,7 @@ module.exports = {
     runSpeed: 1.5,
 
     // General damage multiplier everytime damage is dealt.
-    DAMAGE_CONSTANT: 0.5,
+    DAMAGE_CONSTANT: 0.4,
 
     // General knockback multiplier everytime knockback is applied.
     KNOCKBACK_CONSTANT: 1.5,
@@ -123,7 +123,7 @@ module.exports = {
     BOT_XP: 125,
 
     // The class that players and player-bots spawn as.
-    SPAWN_CLASS: "basic",
+    SPAWN_CLASS: "selector",
 
 
 

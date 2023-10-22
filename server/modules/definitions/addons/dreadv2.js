@@ -1,6 +1,9 @@
 const { combineStats, addAura, makeAuto } = require('../facilitators.js');
 const { gunCalcNames, smshskl, base } = require('../constants.js');
 const g = require('../gunvals.js');
+const newbasic = { reload: 12, recoil: 1.4, shudder: 0.1, damage: 0.75, speed: 5.5, spray: 15, range: 0.35 };
+const hpmulti = 1;
+const dmgmulti = 1;
 const ensureIsClass = (Class, str) => {
     if ("object" == typeof str) {
         return str;
@@ -12,8 +15,8 @@ const ensureIsClass = (Class, str) => {
 };
 const eggnoughtBody = {
     SPEED: base.SPEED * 0.8,
-    HEALTH: base.HEALTH * 1.75,
-	SHIELD: base.SHIELD * 1.5,
+    HEALTH: base.HEALTH * 1.75 * hpmulti,
+	SHIELD: base.SHIELD * 1.5 * hpmulti,
 	REGEN: base.REGEN * 1.5,
     FOV: base.FOV,
 	RESIST: base.RESIST * 1.5,
@@ -21,8 +24,8 @@ const eggnoughtBody = {
 };
 const squarenoughtBody = {
     SPEED: base.SPEED * 0.675,
-    HEALTH: base.HEALTH * 2.5,
-	SHIELD: base.SHIELD * 2,
+    HEALTH: base.HEALTH * 2.5 * hpmulti,
+	SHIELD: base.SHIELD * 2 * hpmulti,
 	REGEN: base.REGEN * 2,
     FOV: base.FOV * 0.95,
 	RESIST: base.RESIST * 2,
@@ -30,8 +33,8 @@ const squarenoughtBody = {
 };
 const trinoughtBody = {
     SPEED: base.SPEED * 0.55,
-    HEALTH: base.HEALTH * 3.5,
-	SHIELD: base.SHIELD * 2.5,
+    HEALTH: base.HEALTH * 3.5* hpmulti,
+	SHIELD: base.SHIELD * 2.5 * hpmulti,
 	REGEN: base.REGEN * 2.5,
     FOV: base.FOV * 0.95,
 	RESIST: base.RESIST * 2.5,
@@ -39,8 +42,8 @@ const trinoughtBody = {
 };
 const pentanoughtBody = {
     SPEED: base.SPEED * 0.425,
-    HEALTH: base.HEALTH * 4.25,
-	SHIELD: base.SHIELD * 3,
+    HEALTH: base.HEALTH * 4.25* hpmulti,
+	SHIELD: base.SHIELD * 3 * hpmulti,
 	REGEN: base.REGEN * 3,
     FOV: base.FOV * 0.95,
 	RESIST: base.RESIST * 3,
@@ -48,8 +51,8 @@ const pentanoughtBody = {
 };
 const hexnoughtBody = {
     SPEED: base.SPEED * 0.3,
-    HEALTH: base.HEALTH * 5,
-	SHIELD: base.SHIELD * 3.5,
+    HEALTH: base.HEALTH * 5 * hpmulti,
+	SHIELD: base.SHIELD * 3.5 * hpmulti,
 	REGEN: base.REGEN * 3.5,
     FOV: base.FOV * 0.95,
 	RESIST: base.RESIST * 3.5,
@@ -58,10 +61,10 @@ const hexnoughtBody = {
 
 module.exports = ({ Class }) => {
 	// Comment out the line below to enable this addon, uncomment it to disable this addon (WARNING: Increases load time by approximately 3x).
-	return console.log('--- Dreadnoughts v2 addon [dreadv2.js] is disabled. See lines 60-61 to enable it. ---');
+	//return console.log('--- Dreadnoughts v2 addon [dreadv2.js] is disabled. See lines 60-61 to enable it. ---');
 
 	// Set the below variable to true to enable hex dreadnought building (WARNING: increases load time by approximately 10x)
-	const buildHexnoughts = true;
+	const buildHexnoughts = false;
 	
 	// Comment out lines from the arrays below to disable that branch of the tree from being generated.
 	const eggnoughtWeapons = [
@@ -131,7 +134,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [22, 10, 1, 0, 0, 0, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.flank, g.flank, g.auto]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.flank, g.flank, g.auto]),
 					TYPE: "bullet",
 				},
 			},
@@ -149,7 +152,7 @@ module.exports = ({ Class }) => {
 				POSITION: [14, 6, 1, 0, -2, 130, 0],
 				PROPERTIES: {
 					AUTOFIRE: true,
-					SHOOT_SETTINGS: combineStats([g.basic, g.skim, g.doublereload, g.lowpower, g.muchmorerecoil, g.morespeed, g.morespeed]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.skim, g.doublereload, g.lowpower, g.muchmorerecoil, g.morespeed, g.morespeed]),
 					TYPE: ["bullet", {PERSISTS_AFTER_DEATH: true}],
 					STAT_CALCULATOR: gunCalcNames.thruster,
 				},
@@ -158,7 +161,7 @@ module.exports = ({ Class }) => {
 				POSITION: [14, 6, 1, 0, 2, 230, 0],
 				PROPERTIES: {
 					AUTOFIRE: true,
-					SHOOT_SETTINGS: combineStats([g.basic, g.skim, g.doublereload, g.lowpower, g.muchmorerecoil, g.morespeed, g.morespeed]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.skim, g.doublereload, g.lowpower, g.muchmorerecoil, g.morespeed, g.morespeed]),
 					TYPE: ["bullet", {PERSISTS_AFTER_DEATH: true}],
 					STAT_CALCULATOR: gunCalcNames.thruster,
 				},
@@ -167,7 +170,7 @@ module.exports = ({ Class }) => {
 				POSITION: [14, 6, 1, 0, 0, 0, 0.2],
 				PROPERTIES: {
 					AUTOFIRE: true,
-					SHOOT_SETTINGS: combineStats([g.basic, g.skim, g.doublereload, g.morespeed, g.morespeed]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.skim, g.doublereload, g.morespeed, g.morespeed]),
 					TYPE: ["bullet", {PERSISTS_AFTER_DEATH: true}],
 				},
 			},
@@ -202,7 +205,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [20, 7, 1, 0, 0, 180*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.sniper, g.assass, {reload: 0.85}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.sniper, g.assass, {reload: 0.85}]),
 					TYPE: "bullet",
 				},
 			},
@@ -218,7 +221,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [15, 7, 1, 0, 0, 180*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, {reload: 0.8}]),
+					SHOOT_SETTINGS: combineStats([newbasic, {reload: 0.8}]),
 					TYPE: "bullet",
 				},
 			},
@@ -234,7 +237,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [17, 9, 1, 0, 0, 180*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, {reload: 1.2, damage: 1.5}]),
+					SHOOT_SETTINGS: combineStats([newbasic, {reload: 1.2, damage: 1.5}]),
 					TYPE: "bullet",
 				},
 			},
@@ -290,7 +293,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [22, 10, 1, 0, 0, 0, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.auto, {health: 1.2, speed: 0.8}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.auto, {health: 1.2, speed: 0.8}]),
 					TYPE: "bullet",
 				},
 			},
@@ -357,7 +360,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [24, 7, 1, 0, 0, 90*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.sniper, g.assass, g.assass, {reload: 0.85}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.sniper, g.assass, g.assass, {reload: 0.85}]),
 					TYPE: "bullet",
 				},
 			},
@@ -379,7 +382,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [19.5, 5, 1, 0, 0, 90*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.sniper, g.rifle, {health: 1.3}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.sniper, g.rifle, {health: 1.3}]),
 					TYPE: "bullet",
 				},
 			},
@@ -395,14 +398,14 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [15, 7, 1, 0, 4.25, 90*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.twin, {reload: 0.85}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.twin, {reload: 0.85}]),
 					TYPE: "bullet",
 				},
 			},
 			{
 				POSITION: [15, 7, 1, 0, -4.25, 90*i, 0.5],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.twin, {reload: 0.85}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.twin, {reload: 0.85}]),
 					TYPE: "bullet",
 				},
 			},
@@ -418,7 +421,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [9, 8, 1.4, 6, 0, 90*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.mach, {size: 0.8, health: 1.3}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.mach, {size: 0.8, health: 1.3}]),
 					TYPE: "bullet",
 				},
 			},
@@ -434,7 +437,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [17, 9, 1, 0, 0, 90*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.pound, {reload: 0.9}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.pound, {reload: 0.9}]),
 					TYPE: "bullet",
 				},
 			},
@@ -450,7 +453,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [11, 6, 1, 8, 0, 90*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.pound, g.arty, g.halfspeed, {reload: 0.8}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.pound, g.arty, g.halfspeed, {reload: 0.8}]),
 					TYPE: "missile",
 					STAT_CALCULATOR: gunCalcNames.sustained,
 				},
@@ -495,7 +498,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [15, 7.5, 1, 0, 0, 90*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.assass, g.minion]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.assass, g.minion]),
 					WAIT_TO_CYCLE: true,
 					TYPE: "bullet",
 				},
@@ -606,7 +609,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [26, 10, 1, 0, 0, 0, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.assass, g.auto, {health: 1.2, speed: 0.8}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.assass, g.auto, {health: 1.2, speed: 0.8}]),
 					TYPE: "bullet",
 				},
 			},
@@ -723,7 +726,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [28, 7, 1, 0, 0, 120*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.sniper, g.assass, g.assass, g.assass, {reload: 0.8}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.sniper, g.assass, g.assass, g.assass, {reload: 0.8}]),
 					TYPE: "bullet",
 				},
 			},
@@ -748,14 +751,14 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [18, 5, 1, 0, 3, 120*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.sniper, g.rifle, g.twin, {speed: 0.8, health: 1.5}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.sniper, g.rifle, g.twin, {speed: 0.8, health: 1.5}]),
 					TYPE: "bullet",
 				},
 			},
 			{
 				POSITION: [18, 5, 1, 0, -3, 120*i, 0.5],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.sniper, g.rifle, g.twin, {speed: 0.8, health: 1.5}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.sniper, g.rifle, g.twin, {speed: 0.8, health: 1.5}]),
 					TYPE: "bullet",
 				},
 			},
@@ -771,14 +774,14 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [13, 8, 1, 0, 5, 120*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, {reload: 0.85}]),
+					SHOOT_SETTINGS: combineStats([newbasic, {reload: 0.85}]),
 					TYPE: "bullet",
 				},
 			},
 			{
 				POSITION: [13, 8, 1, 0, -5, 120*i, 0.5],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, {reload: 0.85}]),
+					SHOOT_SETTINGS: combineStats([newbasic, {reload: 0.85}]),
 					TYPE: "bullet",
 				},
 			},
@@ -794,14 +797,14 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [7, 11, 1.35, 6, 0, 120*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.mach, {size: 0.8}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.mach, {size: 0.8}]),
 					TYPE: "bullet",
 				},
 			},
 			{
 				POSITION: [7, 10, 1.3, 8, 0, 120*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.mach, {size: 0.8, reload: 0.9}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.mach, {size: 0.8, reload: 0.9}]),
 					TYPE: "bullet",
 				},
 			},
@@ -817,7 +820,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [16.5, 11.5, 1, 0, 0, 120*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.pound, g.destroy, {reload: 0.85}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.pound, g.destroy, {reload: 0.85}]),
 					TYPE: "bullet",
 				},
 			},
@@ -836,7 +839,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [15, 15, 1, 0, 0, 120*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.pound, g.arty, g.skim, g.halfspeed, {reload: 0.8}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.pound, g.arty, g.skim, g.halfspeed, {reload: 0.8}]),
 					TYPE: "supermissile",
 					STAT_CALCULATOR: gunCalcNames.sustained,
 				},
@@ -902,7 +905,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [16, 8.5, 1, 0, 0, 120*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.sniper, g.assass, g.bitlessspeed, g.minion]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.sniper, g.assass, g.bitlessspeed, g.minion]),
 					WAIT_TO_CYCLE: true,
 					TYPE: "bullet",
 				},
@@ -1097,7 +1100,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [26, 13, 1, 0, 0, 0, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.sniper, g.pound, g.auto, {health: 1.2, speed: 0.8}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.sniper, g.pound, g.auto, {health: 1.2, speed: 0.8}]),
 					TYPE: "bullet",
 				},
 			},
@@ -1392,7 +1395,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [28, 7, 1, 0, 0, 72*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.sniper, g.assass, g.assass, g.assass, g.assass, {reload: 0.8}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.sniper, g.assass, g.assass, g.assass, g.assass, {reload: 0.8}]),
 					TYPE: "bullet",
 				},
 			},
@@ -1417,14 +1420,14 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [18, 5, 1, 0, 3, 72*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.sniper, g.rifle, {speed: 0.8, health: 1.5}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.sniper, g.rifle, {speed: 0.8, health: 1.5}]),
 					TYPE: "bullet",
 				},
 			},
 			{
 				POSITION: [18, 5, 1, 0, -3, 72*i, 0.5],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.sniper, g.rifle, {speed: 0.8, health: 1.5}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.sniper, g.rifle, {speed: 0.8, health: 1.5}]),
 					TYPE: "bullet",
 				},
 			},
@@ -1440,21 +1443,21 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [13, 7, 1, 0, 3.25, 72*i, 0.5],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.spam, g.spam, {size: 0.85}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.spam, g.spam, {size: 0.85}]),
 					TYPE: "bullet",
 				},
 			},
 			{
 				POSITION: [13, 7, 1, 0, -3.25, 72*i, 0.5],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.spam, g.spam, {size: 0.85}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.spam, g.spam, {size: 0.85}]),
 					TYPE: "bullet",
 				},
 			},
       		{
 				POSITION: [15, 7, 1, 0, 0, 72*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.spam, g.spam, {size: 0.85}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.spam, g.spam, {size: 0.85}]),
 					TYPE: "bullet",
 				},
 			},
@@ -1470,21 +1473,21 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [7.5, 10.75, 1.33, 5.5, 0, 72*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.mach, g.spam, g.spam, {size: 0.7, reload: 1.2}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.mach, g.spam, g.spam, {size: 0.7, reload: 1.2}]),
 					TYPE: "bullet",
 				},
 			},
 			{
 				POSITION: [7.5, 9.5, 1.33, 7.5, 0, 72*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.mach, g.spam, g.spam, {size: 0.7, reload: 1.1}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.mach, g.spam, g.spam, {size: 0.7, reload: 1.1}]),
 					TYPE: "bullet",
 				},
 			},
       		{
 				POSITION: [7.5, 7.25, 1.25, 9.5, 0, 72*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.mach, g.spam, g.spam, {size: 0.7, reload: 1}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.mach, g.spam, g.spam, {size: 0.7, reload: 1}]),
 					TYPE: "bullet",
 				},
 			},
@@ -1500,7 +1503,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [17, 12, 1, 0, 0, 72*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.pound, g.destroy, g.anni, {reload: 0.9, health: 1.1}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.pound, g.destroy, g.anni, {reload: 0.9, health: 1.1}]),
 					TYPE: "bullet",
 				},
 			},
@@ -1519,7 +1522,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [15, 12, 1, 0, 0, 72*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.destroy, g.arty, g.skim, g.halfspeed, {reload: 0.8}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.destroy, g.arty, g.skim, g.halfspeed, {reload: 2}]),
 					TYPE: "supermissile",
 					STAT_CALCULATOR: gunCalcNames.sustained,
 				},
@@ -1620,7 +1623,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [15, 8.5, 1, 0, 0, 120*i, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.sniper, g.assass, g.slow, g.minion]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.sniper, g.assass, g.slow, g.minion]),
 					WAIT_TO_CYCLE: true,
 					TYPE: ["bullet", {COLOR: 5}],
 				},
@@ -1847,7 +1850,7 @@ module.exports = ({ Class }) => {
 			{
 				POSITION: [26, 16, 1, 0, 0, 0, 0],
 				PROPERTIES: {
-					SHOOT_SETTINGS: combineStats([g.basic, g.pound, g.pound, g.destroy, g.auto, {speed: 1.1, health: 0.8}]),
+					SHOOT_SETTINGS: combineStats([newbasic, g.pound, g.pound, g.destroy, g.auto, {speed: 1.1, health: 0.8}]),
 					TYPE: "bullet",
 				},
 			},
@@ -2124,6 +2127,7 @@ module.exports = ({ Class }) => {
 				POSITION: [12, 0, 0, 180, 0, 1],
 				TYPE: ["pentagon", {MIRROR_MASTER_ANGLE: true}],
 			},
+			
 		],
 	}
 	for (let i = 0; i < 5; i++) {
@@ -2141,7 +2145,8 @@ module.exports = ({ Class }) => {
 		)
 	}
 
-	Class.specialTanks.UPGRADES_TIER_0.push("dreadOfficialV2");
+	Class.selector.UPGRADES_TIER_0.push("dreadOfficialV2");
+	Class.basic.UPGRADES_TIER_1.push("dreadOfficialV2");
 		Class.dreadOfficialV2.UPGRADES_TIER_1 = ["swordOfficialV2", "pacifierOfficialV2", "peacekeeperOfficialV2", "invaderOfficialV2", "centaurOfficialV2"];
 
 			Class.swordOfficialV2.UPGRADES_TIER_M1 = ["gladiusOfficialV2", "sabreOfficialV2"];

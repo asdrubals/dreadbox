@@ -193,7 +193,7 @@ class HealthType {
     }
     regenerate(boost = false) {
         boost /= 2;
-        let cons = 5;
+        let cons = 25;
         switch (this.type) {
             case "static":
                 if (this.amount >= this.max || !this.amount) break;
@@ -202,7 +202,7 @@ class HealthType {
             case "dynamic":
                 let r = util.clamp(this.amount / this.max, 0, 1);
                 if (!r) {
-                    this.amount = 0.0001;
+                    this.amount = 0.0005;
                 }
                 if (r === 1) {
                     this.amount = this.max;

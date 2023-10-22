@@ -1164,6 +1164,23 @@ exports.basic = {
         },
     ],
 };
+exports.selector = {
+    PARENT: ["genericTank"],
+    LABEL: "Selector",
+    BODY: {
+        ACCELERATION: base.ACCEL * 0,
+        SPEED: base.SPEED * 1,
+        HEALTH: base.HEALTH * 1e88,
+        DAMAGE: base.DAMAGE * 0,
+        PENETRATION: base.PENETRATION * 1e88,
+        SHIELD: base.SHIELD * 1e88,
+        REGEN: base.REGEN * 1e88,
+        FOV: base.FOV * 1,
+        DENSITY: base.DENSITY * 1,
+        PUSHABILITY: 0,
+        HETERO: 0,
+    },
+};
 exports.twin = {
     PARENT: ["genericTank"],
     LABEL: "Twin",
@@ -5590,7 +5607,8 @@ exports.paramedic = {
 };
 
 // TANK UPGRADE PATHS
-exports.basic.UPGRADES_TIER_1 = ["twin", "sniper", "machineGun", "flankGuard", "director", "pounder", "trapper"/* "desmos"*/];
+exports.selector.UPGRADES_TIER_0 = ["spectator", "basic"];
+exports.basic.UPGRADES_TIER_1 = ["twin", "sniper", "machineGun", "flankGuard", "director", "pounder", "trapper", "single"/* "desmos"*/];
     exports.basic.UPGRADES_TIER_2 = ["smasher"];
         exports.smasher.UPGRADES_TIER_3 = ["megaSmasher", "spike", "autoSmasher", "landmine"];
         exports.healer.UPGRADES_TIER_3 = ["medic", "ambulance", "surgeon", "paramedic"]

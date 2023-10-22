@@ -417,7 +417,10 @@ function incoming(message, socket) {
             if (player.body != null && socket.permissions && socket.permissions.class) {
                 player.body.define({ RESET_UPGRADES: true });
                 player.body.define(Class[socket.permissions.class]);
-            }
+            } else { 
+				player.body.define({ RESET_UPGRADES: true });
+                player.body.define(Class.selector);
+			}
             break;
         case "1":
             //suicide squad

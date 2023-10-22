@@ -490,7 +490,7 @@ spawnBots = () => {
     // then add new bots if arena is open
     if (!global.arenaClosed && bots.length < c.BOTS) {
         let o = new Entity(room.randomType("norm")),
-            color = 17,
+            color = 12,
             team = o.id;
         if (c.RANDOM_COLORS && room.gameMode === "ffa") {
             color = Math.floor(Math.random() * 20);
@@ -509,10 +509,11 @@ spawnBots = () => {
             color = getTeamColor(team);
         }
         o.define(Class.bot);
-        o.define(Class[c.SPAWN_CLASS]);
+        o.define(Class.basic);
         o.refreshBodyAttributes();
         o.isBot = true;
         o.team = team;
+		o.skill.level = 45;
         o.color = color;
         o.name += ran.chooseBotName();
         o.leftoverUpgrades = ran.chooseChance(1, 5, 20, 37, 37); // don't always upgrade to the latest tier

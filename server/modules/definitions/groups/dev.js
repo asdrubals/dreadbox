@@ -67,7 +67,7 @@ exports.developer = {
 exports.spectator = {
     PARENT: ["menu"],
     LABEL: "Spectator",
-    ALPHA: 0,
+    ALPHA: 0.5,
     CAN_BE_ON_LEADERBOARD: false,
     ACCEPTS_SCORE: false,
     DRAW_HEALTH: false,
